@@ -1,0 +1,263 @@
+.bellWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.bellBtn {
+  position: relative;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #F8FAFC;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.bellBtn:hover {
+  background: rgba(229, 43, 43, 0.15);
+  border-color: rgba(229, 43, 43, 0.5);
+  transform: translateY(-1px);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(229, 43, 43, 0.25);
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: linear-gradient(135deg, #E52B2B, #B91C1C);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 2px 8px rgba(229, 43, 43, 0.6);
+  border: 2px solid #0B172A;
+  animation: pulseBadge 2s infinite;
+}
+
+@keyframes pulseBadge {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 43, 43, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(229, 43, 43, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 43, 43, 0);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 360px;
+  max-width: 90vw;
+  background: #0B172A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(229, 43, 43, 0.15);
+  z-index: 10000;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.header {
+  padding: 1rem 1.2rem;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wsLiveTag {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.5rem;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ADE80;
+  border-radius: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.wsLiveDot {
+  width: 6px;
+  height: 6px;
+  background: #22C55E;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #22C55E;
+}
+
+.actionsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btnAction {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.btnAction:hover {
+  color: #E52B2B;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.list {
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.item {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  gap: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.itemUnread {
+  background: rgba(229, 43, 43, 0.06);
+}
+
+.itemIcon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.itemContent {
+  flex: 1;
+}
+
+.itemTitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #F8FAFC;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unreadDot {
+  width: 8px;
+  height: 8px;
+  background: #E52B2B;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px #E52B2B;
+}
+
+.itemMessage {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.itemTime {
+  font-size: 0.72rem;
+  color: #64748B;
+}
+
+.emptyState {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: #64748B;
+  font-size: 0.88rem;
+}
+
+.footer {
+  padding: 0.6rem 1.2rem;
+  background: rgba(15, 23, 42, 0.98);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.72rem;
+  color: #64748B;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .dropdown {
+    position: fixed;
+    top: 75px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: calc(100vw - 24px);
+    z-index: 100000;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+  }
+
+  .list {
+    max-height: calc(75vh - 100px);
+  }
+
+  .header {
+    padding: 0.85rem 1rem;
+  }
+
+  .item {
+    padding: 0.85rem 1rem;
+  }
+}

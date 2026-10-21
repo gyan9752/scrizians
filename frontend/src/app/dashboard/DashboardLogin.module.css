@@ -1,0 +1,185 @@
+.container {
+  background-color: #F8FAFC;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+.loginCard {
+  max-width: 520px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 15px 45px rgba(11, 23, 42, 0.08);
+  border: 1px solid #E2E8F0;
+}
+
+.headerBox {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logoImg {
+  height: 46px;
+  width: auto;
+  margin-bottom: 1.2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0B172A;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+.roleTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  background: #F1F5F9;
+  padding: 0.4rem;
+  border-radius: 12px;
+}
+
+.roleTab {
+  padding: 0.65rem 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.roleTabActive {
+  background: #0B172A !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(11, 23, 42, 0.15);
+}
+
+.errorAlert {
+  background: #FEE2E2;
+  color: #991B1B;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.successAlert {
+  background: #DCFCE7;
+  color: #166534;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #CBD5E1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #0F172A;
+  font-weight: 700;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: #E52B2B;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 0.8rem 2.8rem 0.8rem 1rem;
+  border: 2px solid #CBD5E1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #0F172A;
+  font-weight: 700;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.passwordInput:focus {
+  border-color: #E52B2B;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.btnSubmit {
+  background: #E52B2B;
+  color: #ffffff;
+  padding: 0.95rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  box-shadow: 0 8px 25px rgba(229, 43, 43, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btnSubmit:hover {
+  background: #C52222;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(229, 43, 43, 0.4);
+}
+
+.footerNote {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #64748B;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #F1F5F9;
+}

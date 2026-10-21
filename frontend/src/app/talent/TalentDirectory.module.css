@@ -1,0 +1,201 @@
+.hero {
+  background-color: #0A172A;
+  background-image: radial-gradient(circle at 90% 30%, rgba(229, 43, 43, 0.15) 0%, transparent 45%);
+  color: #ffffff;
+  padding: 3.5rem 1.5rem 3.5rem;
+  position: relative;
+  overflow: visible;
+}
+
+.heroRingWrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heroRing {
+  position: absolute;
+  right: -140px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 45px solid rgba(180, 40, 50, 0.22);
+}
+
+.heroInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbLink {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #ffffff;
+}
+
+.eyebrow {
+  color: #F87171;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.6px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #94A3B8;
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 2.5rem;
+}
+
+.filterCard {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 220px 200px;
+  gap: 0.8rem;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14);
+  margin-bottom: -6rem;
+  position: relative;
+  z-index: 10;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.4rem 0.8rem;
+  background: transparent;
+}
+
+.searchIcon {
+  color: #64748B;
+  font-size: 1.1rem;
+}
+
+.searchInput {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #0F172A;
+  font-size: 0.95rem;
+  outline: none;
+  font-weight: 500;
+}
+
+.searchInput::placeholder {
+  color: #64748B;
+}
+
+.select {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #0F172A;
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.select:focus {
+  border-color: #E52B2B;
+}
+
+.mainContainer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 5.5rem 0 4rem;
+}
+
+@media (max-width: 1228px) {
+  .mainContainer {
+    padding: 5.5rem 1.5rem 4rem;
+  }
+}
+
+.counterLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748B;
+  margin-bottom: 1.8rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  align-items: stretch;
+}
+
+@media (max-width: 992px) {
+  .hero {
+    padding: 2.5rem 1.25rem 3rem;
+  }
+  .filterCard {
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+  }
+  .mainContainer {
+    padding-top: 3rem;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 2rem 1rem 2.5rem;
+    overflow: hidden;
+  }
+  .title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+    word-break: break-word;
+  }
+  .subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .mainContainer {
+    padding: 2.5rem 1rem 3rem;
+  }
+}

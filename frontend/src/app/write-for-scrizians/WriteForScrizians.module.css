@@ -1,0 +1,343 @@
+.hero {
+  background-color: #0A172A;
+  background-image: radial-gradient(circle at 90% 30%, rgba(229, 43, 43, 0.15) 0%, transparent 45%);
+  color: #ffffff;
+  padding: 3.5rem 1.5rem 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroRingWrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heroRing {
+  position: absolute;
+  right: -140px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 45px solid rgba(180, 40, 50, 0.22);
+}
+
+.heroInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbLink {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #ffffff;
+}
+
+.eyebrow {
+  color: #F87171;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.6px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #94A3B8;
+  line-height: 1.65;
+  max-width: 640px;
+  margin-bottom: 2rem;
+}
+
+.btnCreate {
+  background-color: #E52B2B;
+  color: #ffffff;
+  padding: 0.85rem 1.8rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 25px rgba(229, 43, 43, 0.22);
+}
+
+.btnCreate:hover {
+  background-color: #C52222;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(229, 43, 43, 0.32);
+}
+
+.mainContainer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 0 5rem;
+}
+
+@media (max-width: 1228px) {
+  .mainContainer {
+    padding: 4rem 1.5rem 5rem;
+  }
+}
+
+.featuresGrid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.featureCard {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 17px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 30px rgba(34, 41, 75, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(34, 41, 75, 0.12);
+}
+
+.featureIconBox {
+  width: 38px;
+  height: 38px;
+  background: #FEF2F2;
+  color: #E52B2B;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+}
+
+.featureTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.5rem;
+}
+
+.featureDesc {
+  font-size: 0.88rem;
+  color: #64748B;
+  line-height: 1.6;
+}
+
+.twoColSection {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.guidelinesCard {
+  background: #0B172A;
+  color: #ffffff;
+  border-radius: 17px;
+  padding: 2.5rem;
+}
+
+.guidelinesTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1.8rem;
+}
+
+.guidelinesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.guidelineItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+}
+
+.checkRed {
+  color: #F87171;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.pitchCard {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 17px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(34, 41, 75, 0.06);
+}
+
+.pitchTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 1.8rem;
+}
+
+.formGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  color: #0F172A;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: #E52B2B;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  color: #0F172A;
+  outline: none;
+  resize: vertical;
+  min-height: 140px;
+  transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+  border-color: #E52B2B;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.84rem;
+  color: #64748B;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #E52B2B;
+  cursor: pointer;
+}
+
+.btnSubmit {
+  background: #E52B2B;
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 25px rgba(229, 43, 43, 0.22);
+}
+
+.btnSubmit:hover {
+  background: #C52222;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(229, 43, 43, 0.32);
+}
+
+@media (max-width: 992px) {
+  .hero {
+    padding: 2.5rem 1.25rem 3rem;
+  }
+  .featuresGrid4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .twoColSection {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 2rem 1rem 2.5rem;
+    overflow: hidden;
+  }
+  .title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+    word-break: break-word;
+  }
+  .subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .mainContainer {
+    padding: 2.5rem 1rem 3rem;
+  }
+  .featuresGrid4 {
+    grid-template-columns: 1fr;
+  }
+  .formGrid2 {
+    grid-template-columns: 1fr;
+  }
+  .formCard {
+    padding: 1.25rem 1rem;
+  }
+}

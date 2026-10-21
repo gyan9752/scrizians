@@ -1,0 +1,331 @@
+.registerSection {
+  background-color: #F8FAFC;
+  padding: 1.5rem 1.5rem 2rem;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Main Outer Centered Card Wrapper */
+.cardWrapper {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(11, 23, 42, 0.06);
+  padding: 0.6rem;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 1.2rem;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+/* Left Dark Navy Card */
+.leftPanel {
+  background-color: #0B172A;
+  background-image: radial-gradient(circle at 100% 100%, rgba(229, 43, 43, 0.25) 0%, transparent 60%);
+  border-radius: 14px;
+  padding: 2.2rem 1.8rem;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.leftTop {
+  position: relative;
+  z-index: 2;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.logoBadge {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.headline {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+
+.leftSub {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  line-height: 1.5;
+}
+
+.backLink {
+  color: #94A3B8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.backLink:hover {
+  color: #ffffff;
+}
+
+/* Right White Form Panel */
+.rightPanel {
+  padding: 1.5rem 1.8rem 1.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.2rem;
+}
+
+.formSub {
+  font-size: 0.9rem;
+  color: #64748B;
+  margin-bottom: 1.2rem;
+}
+
+/* Role Selector Grid */
+.roleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.roleCard {
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.roleCard:hover {
+  border-color: #CBD5E1;
+  background: #F8FAFC;
+}
+
+.roleCardSelected {
+  border-color: #E52B2B !important;
+  background: #FFF5F5 !important;
+  box-shadow: 0 0 0 1px #E52B2B;
+}
+
+.roleCardTitle {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.roleCardDesc {
+  font-size: 0.75rem;
+  color: #64748B;
+  line-height: 1.3;
+}
+
+.formGroup {
+  margin-bottom: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.input {
+  width: 100%;
+  padding: 0.55rem 0;
+  border: none;
+  border-bottom: 2px solid #E2E8F0;
+  border-radius: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0F172A;
+  background: transparent;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-bottom-color: #E52B2B;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 0.55rem 2.2rem 0.55rem 0;
+  border: none;
+  border-bottom: 2px solid #E2E8F0;
+  border-radius: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0F172A;
+  background: transparent;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.passwordInput:focus {
+  border-bottom-color: #E52B2B;
+}
+
+.eyeToggleBtn {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.helpText {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  margin-top: 0.1rem;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 0.82rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #E52B2B;
+  cursor: pointer;
+}
+
+.btnSubmit {
+  background: #E52B2B;
+  color: #ffffff;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(229, 43, 43, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btnSubmit:hover {
+  background: #CC1F1F;
+  transform: translateY(-1px);
+}
+
+.footerNote {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #64748B;
+  text-align: center;
+}
+
+.linkRed {
+  color: #E52B2B;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.errorAlert {
+  background: #FEE2E2;
+  color: #991B1B;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.toastContainer {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100000;
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toastCard {
+  background: #0B172A;
+  color: #ffffff;
+  padding: 0.95rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: 1px solid rgba(229, 43, 43, 0.5);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(229, 43, 43, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .cardWrapper {
+    grid-template-columns: 1fr;
+  }
+}

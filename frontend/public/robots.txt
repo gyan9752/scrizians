@@ -1,0 +1,19 @@
+# Scrizians Search Engine Crawling Rules
+# Primary Domain: https://scrizians.com
+# Backed by Scriza Private Limited
+
+User-agent: *
+Allow: /
+
+# Disallow private dashboards and admin management routes
+Disallow: /dashboard/
+Disallow: /dashboard/*
+Disallow: /admin/
+Disallow: /client/
+Disallow: /contributor/
+Disallow: /candidate/
+Disallow: /login
+Disallow: /register
+
+# Sitemap location
+Sitemap: https://scrizians.com/sitemap

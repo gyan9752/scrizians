@@ -1,0 +1,229 @@
+.heroSection {
+  background-color: #0A172A;
+  background-image: radial-gradient(circle at 90% 30%, rgba(229, 43, 43, 0.15) 0%, transparent 45%);
+  color: #ffffff;
+  padding: 4rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroRingWrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heroRing {
+  position: absolute;
+  right: -140px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 45px solid rgba(180, 40, 50, 0.22);
+}
+
+.heroInner {
+  max-width: var(--max-width, 1240px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbLink {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #ffffff;
+}
+
+.eyebrow {
+  color: #F87171;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.heroTitle {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: #94A3B8;
+  max-width: 650px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.sitemapSection {
+  background: #F8FAFC;
+  padding: 5rem 1.5rem;
+}
+
+.sitemapInner {
+  max-width: var(--max-width, 1240px);
+  margin: 0 auto;
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2.2rem;
+}
+
+.categoryCard {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.categoryCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  border-color: #CBD5E1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #F1F5F9;
+}
+
+.cardIcon {
+  font-size: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+}
+
+.linksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.linkItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.sitemapLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0F172A;
+  transition: color 0.2s ease;
+}
+
+.sitemapLink:hover {
+  color: #E52B2B;
+}
+
+.sitemapLink:hover .linkArrow {
+  transform: translateX(4px);
+  color: #E52B2B;
+}
+
+.linkLabel {
+  flex: 1;
+}
+
+.linkArrow {
+  color: #94A3B8;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.linkDesc {
+  font-size: 0.82rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.bottomCtaSection {
+  background: #0B172A;
+  color: #ffffff;
+  padding: 4.5rem 1.5rem;
+  text-align: center;
+}
+
+.bottomCtaInner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bottomCtaInner h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+}
+
+.bottomCtaInner p {
+  color: #94A3B8;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.btnPrimaryCta {
+  background: #E52B2B;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem 2.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnPrimaryCta:hover {
+  background: #DC2626;
+  box-shadow: 0 6px 20px rgba(229, 43, 43, 0.4);
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  .categoriesGrid {
+    grid-template-columns: 1fr;
+  }
+}

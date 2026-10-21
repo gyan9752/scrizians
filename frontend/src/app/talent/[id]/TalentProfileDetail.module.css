@@ -1,0 +1,301 @@
+.heroSection {
+  background-color: #0A172A;
+  background-image: radial-gradient(circle at 90% 30%, rgba(229, 43, 43, 0.15) 0%, transparent 45%);
+  color: #ffffff;
+  padding: 3.5rem 1.5rem 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroRingWrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heroRing {
+  position: absolute;
+  right: -140px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 45px solid rgba(180, 40, 50, 0.22);
+  pointer-events: none;
+}
+
+.heroInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbLink {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #ffffff;
+}
+
+.idEyebrow {
+  color: #F87171;
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.6px;
+}
+
+.categorySub {
+  font-size: 1.1rem;
+  color: #94A3B8;
+  margin-bottom: 1.5rem;
+}
+
+.badgesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badgeScrizaTeam {
+  background-color: #FEE2E2;
+  color: #DC2626;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+}
+
+.badgeVerified {
+  background-color: #DBEAFE;
+  color: #2563EB;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+}
+
+.badgeAvailable {
+  background-color: #DCFCE7;
+  color: #16A34A;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+}
+
+.mainLayout {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3.5rem 0 5rem;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 1228px) {
+  .mainLayout {
+    padding: 3.5rem 1.5rem 5rem;
+  }
+}
+
+.contentCard {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 17px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 1rem;
+}
+
+.aboutText {
+  font-size: 0.98rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skillPill {
+  background: #F1F5F9;
+  color: #334155;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+}
+
+.portfolioBox {
+  border-left: 3px solid #E52B2B;
+  padding-left: 1.2rem;
+}
+
+.portfolioHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.portfolioTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.ndaBadge {
+  background: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+}
+
+.portfolioDesc {
+  font-size: 0.92rem;
+  color: #64748B;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.portfolioRoles {
+  font-size: 0.84rem;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+/* Right Column Rate Card */
+.rateCard {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-top: 4px solid #E52B2B;
+  border-radius: 17px;
+  padding: 2rem;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 90px;
+}
+
+.rateLabel {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #94A3B8;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.ratePrice {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0F172A;
+  margin-bottom: 1.2rem;
+}
+
+.metaList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: #475569;
+  margin-bottom: 1.2rem;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.engagementPills {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.engagementPill {
+  background: #EFF6FF;
+  color: #2563EB;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+}
+
+.btnRequestInterview {
+  display: block;
+  width: 100%;
+  background: #E52B2B;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 25px rgba(229, 43, 43, 0.22);
+}
+
+.btnRequestInterview:hover {
+  background: #C52222;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(229, 43, 43, 0.32);
+}
+
+.privacyNote {
+  font-size: 0.75rem;
+  color: #64748B;
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+@media (max-width: 992px) {
+  .mainLayout {
+    grid-template-columns: 1fr;
+  }
+  .rateCard {
+    position: static;
+  }
+}

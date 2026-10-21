@@ -1,0 +1,233 @@
+.footer {
+  background-color: #070D18;
+  color: #94A3B8;
+  padding: 4.5rem 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.88rem;
+}
+
+.inner {
+  max-width: var(--max-width, 1240px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3.5rem;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.logoRow {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 0.2rem;
+}
+
+.footerLogoImg {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+.tagline {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.parentText {
+  font-size: 0.84rem;
+  color: #94A3B8;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.parentText strong {
+  color: #CBD5E1;
+}
+
+.scrizaLink {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.scrizaLink:hover {
+  color: #E52B2B;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.contactBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #E2E8F0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactBadge:hover {
+  color: #ffffff;
+}
+
+.contactIcon {
+  font-size: 0.9rem;
+}
+
+.locationText {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-top: 0.2rem;
+}
+
+.navCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.colTitle {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  position: relative;
+  display: inline-block;
+}
+
+.colTitle::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #E52B2B;
+  margin-top: 0.4rem;
+  border-radius: 2px;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.linkList a {
+  font-size: 0.86rem;
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.linkList a:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.bottomBar {
+  max-width: var(--max-width, 1240px);
+  margin: 3.5rem auto 0;
+  padding: 1.5rem 0 2.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #64748B;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copyText strong {
+  color: #94A3B8;
+}
+
+.securityBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  color: #94A3B8;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.shieldIcon {
+  font-size: 0.82rem;
+}
+
+.policyLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.policyLinks a {
+  color: #94A3B8;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.policyLinks a:hover {
+  color: #ffffff;
+}
+
+/* Tablet Layout */
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 640px) {
+  .footer {
+    padding: 3rem 1.25rem 0;
+  }
+  
+  .inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1.5rem;
+  }
+
+  .brandCol {
+    grid-column: 1 / -1;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .policyLinks {
+    justify-content: center;
+    gap: 0.8rem 1.2rem;
+  }
+}

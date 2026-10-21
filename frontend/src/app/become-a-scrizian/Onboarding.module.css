@@ -1,0 +1,49 @@
+.container {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0;
+}
+
+@media (max-width: 1228px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+.card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: #64748B;
+  margin-bottom: 2rem;
+}
+
+.stepBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #94A3B8;
+  border-bottom: 2px solid #F1F5F9;
+  padding-bottom: 0.8rem;
+}
+
+.stepActive {
+  color: var(--color-red);
+}

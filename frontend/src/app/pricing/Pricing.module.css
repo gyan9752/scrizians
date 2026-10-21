@@ -1,0 +1,337 @@
+.heroSection {
+  background-color: #0A172A;
+  background-image: radial-gradient(circle at 90% 30%, rgba(229, 43, 43, 0.15) 0%, transparent 45%);
+  color: #ffffff;
+  padding: 4rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroRingWrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heroRing {
+  position: absolute;
+  right: -140px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 45px solid rgba(180, 40, 50, 0.22);
+}
+
+.heroInner {
+  max-width: var(--max-width, 1240px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbLink {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #ffffff;
+}
+
+.eyebrow {
+  color: #F87171;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.heroTitle {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: #94A3B8;
+  max-width: 650px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.gridSection {
+  background: #F8FAFC;
+  padding: 4.5rem 1.5rem;
+}
+
+.gridInner {
+  max-width: var(--max-width, 1240px);
+  margin: 0 auto;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.priceCard {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 2.2rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.priceCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  border-color: #CBD5E1;
+}
+
+.popularCard {
+  border: 2px solid #E52B2B;
+  box-shadow: 0 12px 28px rgba(229, 43, 43, 0.1);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -14px;
+  right: 20px;
+  background: #E52B2B;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.badgeTag {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0284C7;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.6rem;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.4rem;
+}
+
+.cardSubtitle {
+  font-size: 0.88rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  min-height: 42px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.priceAmount {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0F172A;
+}
+
+.priceUnit {
+  font-size: 0.95rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+}
+
+.featureList li {
+  font-size: 0.88rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.checkIcon {
+  color: #16A34A;
+  font-weight: 900;
+}
+
+.ctaBtn {
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.ctaBtnPrimary {
+  background: #E52B2B;
+  color: #ffffff;
+  border: none;
+}
+
+.ctaBtnPrimary:hover {
+  background: #DC2626;
+  box-shadow: 0 4px 12px rgba(229, 43, 43, 0.3);
+}
+
+.ctaBtnSecondary {
+  background: #F1F5F9;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+}
+
+.ctaBtnSecondary:hover {
+  background: #E2E8F0;
+  color: #000000;
+}
+
+.disclaimerBox {
+  margin-top: 3.5rem;
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 12px;
+  padding: 1.2rem 1.6rem;
+  color: #1E40AF;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.faqSection {
+  padding: 4.5rem 1.5rem;
+  background: #ffffff;
+}
+
+.faqInner {
+  max-width: var(--max-width, 1240px);
+  margin: 0 auto;
+}
+
+.faqTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0F172A;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+.faqCard {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 1.6rem;
+}
+
+.faqQ {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.6rem;
+}
+
+.faqA {
+  font-size: 0.9rem;
+  color: #64748B;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bottomCtaSection {
+  background: #0B172A;
+  color: #ffffff;
+  padding: 4.5rem 1.5rem;
+  text-align: center;
+}
+
+.bottomCtaInner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bottomCtaInner h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+}
+
+.bottomCtaInner p {
+  color: #94A3B8;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.btnPrimaryCta {
+  background: #E52B2B;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem 2.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnPrimaryCta:hover {
+  background: #DC2626;
+  box-shadow: 0 6px 20px rgba(229, 43, 43, 0.4);
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+}
