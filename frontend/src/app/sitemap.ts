@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const API = process.env.NEXT_PUBLIC_EXPRESS_API_URL || 'http://localhost:5001/api/v1';
+const API = process.env.NEXT_PUBLIC_EXPRESS_API_URL || (process.env.NODE_ENV === 'production' ? 'https://backend-two-wine-72.vercel.app/api/v1' : 'http://localhost:5001/api/v1');
 
 async function list(path: string): Promise<any[]> {
   try {

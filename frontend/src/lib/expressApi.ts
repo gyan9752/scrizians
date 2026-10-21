@@ -11,9 +11,21 @@ type ApiResponse<T = any> = {
   [key: string]: any;
 };
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_EXPRESS_API_URL ||
-  'http://localhost:5001/api/v1';
+const getApiBaseUrl = (): string => {
+  if (process.env.NEXT_PUBLIC_EXPRESS_API_URL) {
+    return process.env.NEXT_PUBLIC_EXPRESS_API_URL.replace(/\/+$/, '');
+  }
+
+  if (
+    typeof window !== 'undefined' &&
+    window.location.hostname !== 'localhost' &&
+    window.location.hostname !== '127.0.0.1'
+  ) {
+    return 'https://backend-two-wine-72.vercel.app/api/v1';
+  }
+
+  return 'http://localhost:5001/api/v1';
+};
 
 const getToken = (): string => {
   if (typeof window === 'undefined') return '';
@@ -76,7 +88,7 @@ const refreshAccessToken = (): Promise<string | null> => {
   if (!refreshInFlight) {
     refreshInFlight = (async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+        const response = await fetch(`${getApiBaseUrl()}/auth/refresh`, {
           method: 'POST',
           credentials: 'include',
         });
@@ -120,7 +132,7 @@ async function request<T = any>(
         : `Bearer ${token}`;
     }
 
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    const response = await fetch(`${getApiBaseUrl()}${endpoint}`, {
       ...options,
       headers,
       credentials: 'include',
