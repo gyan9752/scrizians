@@ -173,6 +173,8 @@ app.get('/api/v1/health', (req, res) => {
     requestId: req.requestId,
     timestamp: new Date().toISOString()
   });
+});
+
 app.use(async (req, res, next) => {
   try {
     if (mongoose.connection.readyState !== 1) {
