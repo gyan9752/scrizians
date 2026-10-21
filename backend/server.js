@@ -3,6 +3,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 const connectDB = require('./src/config/db');
 
 dotenv.config();
@@ -70,6 +71,11 @@ app.use(
         process.env.NODE_ENV !== 'production' &&
         /^https?:\/\/localhost(?::\d+)?$/.test(origin)
       ) {
+        return callback(null, true);
+      }
+
+      // Allow all Vercel deployments (preview & production)
+      if (/\.vercel\.app$/.test(origin)) {
         return callback(null, true);
       }
 
@@ -167,6 +173,19 @@ app.get('/api/v1/health', (req, res) => {
     requestId: req.requestId,
     timestamp: new Date().toISOString()
   });
+app.use(async (req, res, next) => {
+  try {
+    if (mongoose.connection.readyState !== 1) {
+      await connectDB();
+    }
+    next();
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: 'Database connection failed.',
+      error: err.message
+    });
+  }
 });
 
 /*
@@ -447,8 +466,12 @@ process.on(
 
 /*
  * =========================================================
- * START
+ * START & EXPORT
  * =========================================================
  */
 
-startServer();
+if (process.env.VERCEL !== '1') {
+  startServer();
+}
+
+module.exports = app;

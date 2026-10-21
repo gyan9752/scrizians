@@ -22,7 +22,13 @@ const mongoose = require('mongoose');
 
 mongoose.set('bufferCommands', false);
 
+let cachedConn = null;
+
 const connectDB = async () => {
+  if (cachedConn && mongoose.connection.readyState === 1) {
+    return cachedConn;
+  }
+
   const mongoUri = process.env.MONGODB_URI;
 
   if (!mongoUri) {
@@ -38,6 +44,7 @@ const connectDB = async () => {
       family: 4
     });
 
+    cachedConn = conn;
     console.log(`[MongoDB] Connected successfully: ${conn.connection.host}`);
 
     return conn;
