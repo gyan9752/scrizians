@@ -51,7 +51,10 @@ const isAuthEndpoint = (endpoint: string) =>
   endpoint.startsWith('/auth/refresh') ||
   endpoint.startsWith('/auth/verify-2fa') ||
   endpoint.startsWith('/auth/2fa/') ||
-  endpoint.startsWith('/auth/logout');
+  endpoint.startsWith('/auth/logout') ||
+  endpoint.startsWith('/auth/forgot-password') ||
+  endpoint.startsWith('/auth/verify-reset-code') ||
+  endpoint.startsWith('/auth/reset-password');
 
 const clearSession = () => {
   if (typeof window === 'undefined') return;
@@ -306,6 +309,24 @@ export const authApi = {
   updateProfile: (data: any) =>
     request('/auth/profile', {
       method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+
+  forgotPassword: (email: string) =>
+    request('/auth/forgot-password', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    }),
+
+  verifyResetCode: (email: string, otpCode: string) =>
+    request('/auth/verify-reset-code', {
+      method: 'POST',
+      body: JSON.stringify({ email, otpCode }),
+    }),
+
+  resetPassword: (data: { email: string; resetToken: string; newPassword: string }) =>
+    request('/auth/reset-password', {
+      method: 'POST',
       body: JSON.stringify(data),
     }),
 };

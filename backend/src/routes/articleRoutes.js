@@ -51,25 +51,25 @@ router.delete(
 );
 
 
-// Admin
+// Admin & Staff Editorial Workflow
 router.get(
   '/admin/list/all',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.getAdminArticles
 );
 
 router.post(
   '/admin/create',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.createArticle
 );
 
 router.put(
   '/admin/:id',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.adminUpdateArticle
 );
 
@@ -83,14 +83,14 @@ router.delete(
 router.patch(
   '/admin/:id/workflow',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.moveArticleWorkflow
 );
 
 router.patch(
   '/admin/:id/schedule',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.scheduleArticle
 );
 

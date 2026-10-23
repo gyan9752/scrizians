@@ -74,8 +74,11 @@ app.use(
         return callback(null, true);
       }
 
-      // Allow all Vercel deployments (preview & production)
-      if (/\.vercel\.app$/.test(origin)) {
+      // Allow approved Scrizians production and preview deployments (F-05)
+      if (
+        /^https:\/\/(scrizians|frontend)(-[a-z0-9_-]+)?\.vercel\.app$/i.test(origin) ||
+        /^https:\/\/(www\.)?scrizians\.com$/i.test(origin)
+      ) {
         return callback(null, true);
       }
 

@@ -62,28 +62,28 @@ router.get(
 router.post(
   '/users',
   authMiddleware,
-  requireRole('admin', 'scriza_staff'),
+  requireRole('admin'),
   adminController.createUser
 );
 
 router.patch(
   '/users/:id',
   authMiddleware,
-  requireRole('admin', 'scriza_staff'),
+  requireRole('admin'),
   adminController.updateUser
 );
 
 router.put(
   '/users/:id',
   authMiddleware,
-  requireRole('admin', 'scriza_staff'),
+  requireRole('admin'),
   adminController.updateUser
 );
 
 router.delete(
   '/users/:id',
   authMiddleware,
-  requireRole('admin', 'scriza_staff'),
+  requireRole('admin'),
   adminController.deleteUser
 );
 

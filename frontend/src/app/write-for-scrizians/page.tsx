@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { LeadModal } from '@/components/LeadModal/LeadModal';
+import { leadApi } from '@/lib/expressApi';
 import styles from './WriteForScrizians.module.css';
 
 export default function WriteForScriziansPage() {
@@ -12,12 +13,39 @@ export default function WriteForScriziansPage() {
   const [workEmail, setWorkEmail] = useState('');
   const [pitch, setPitch] = useState('');
   const [agree, setAgree] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
-  const handleSubmitPitch = (e: React.FormEvent) => {
+  const handleSubmitPitch = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMessage('');
+    setSubmitting(true);
+
+    try {
+      const res = await leadApi.create({
+        name: fullName.trim(),
+        email: workEmail.trim(),
+        serviceRequested: 'Contributor Article Pitch',
+        message: pitch.trim(),
+        source: 'write-for-scrizians'
+      });
+
+      if (res.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(
+          res.message || res.error || 'Failed to submit pitch. Please try again.'
+        );
+      }
+    } catch (err: any) {
+      setErrorMessage(
+        err?.message || 'Failed to submit pitch. Please try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -123,6 +151,11 @@ export default function WriteForScriziansPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmitPitch}>
+                {errorMessage && (
+                  <div style={{ background: '#FEE2E2', color: '#B91C1C', padding: '0.75rem 1rem', borderRadius: '6px', marginBottom: '1rem', fontSize: '0.9rem', fontWeight: 600 }}>
+                    ⚠️ {errorMessage}
+                  </div>
+                )}
                 <div className={styles.formGrid2}>
                   <div className={styles.formGroup} style={{ marginBottom: 0 }}>
                     <label className={styles.label}>Full name *</label>
@@ -174,8 +207,8 @@ export default function WriteForScriziansPage() {
                   </label>
                 </div>
 
-                <button type="submit" className={styles.btnSubmit}>
-                  Submit enquiry
+                <button type="submit" className={styles.btnSubmit} disabled={submitting}>
+                  {submitting ? 'Submitting pitch...' : 'Submit enquiry'}
                 </button>
               </form>
             )}

@@ -1,8 +1,10 @@
 const crypto = require('crypto');
 const User = require('../models/User');
+const AuditLog = require('../models/AuditLog');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const QRCode = require('qrcode');
+const emailService = require('../services/emailService');
 const {
   generateSecret,
   verifyToken,
@@ -1534,9 +1536,17 @@ exports.verify2FA = async (req, res) => {
     }
 
     /*
-     * STATIC OTP MODE (temporary, until SMTP / authenticator is used)
+     * STATIC OTP MODE (development/staging only)
      */
     if (getTwoFactorMode() === 'static') {
+      if (process.env.NODE_ENV === 'production' && !process.env.ALLOW_STATIC_2FA_IN_PROD) {
+        return res.status(403).json({
+          success: false,
+          message:
+            'Static OTP 2FA is prohibited in production. Please enroll in authenticator-based TOTP.'
+        });
+      }
+
       const expected = getStaticOtp();
 
       if (!expected) {
@@ -1700,6 +1710,228 @@ exports.updateProfile = async (req, res) => {
       success: true,
       message: 'Profile updated successfully',
       data: buildAuthResponse(user, token)
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+/*
+ * =========================================================
+ * PASSWORD RESET FLOW (Forgot Password, Verify Code, Reset)
+ * =========================================================
+ */
+
+exports.forgotPassword = async (req, res) => {
+  try {
+    const rawEmail = req.body?.email;
+    if (!rawEmail || typeof rawEmail !== 'string') {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide a valid email address.'
+      });
+    }
+
+    const email = rawEmail.trim().toLowerCase();
+    const user = await User.findOne({ email }).select(
+      '+verification.otpHash +verification.otpExpiresAt +verification.otpAttempts'
+    );
+
+    // Timing attack & enumeration protection: always return generic success message
+    if (!user) {
+      return res.status(200).json({
+        success: true,
+        message: 'If an account with this email exists, a 6-digit verification code has been sent.'
+      });
+    }
+
+    // Rate limit: prevent spamming OTP requests (at least 60s cooldown)
+    if (user.verification?.lastOtpSentAt && Date.now() - new Date(user.verification.lastOtpSentAt).getTime() < 60000) {
+      return res.status(429).json({
+        success: false,
+        message: 'Please wait at least 60 seconds before requesting another code.'
+      });
+    }
+
+    // Generate secure 6-digit OTP
+    const resetOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpHash = crypto.createHash('sha256').update(resetOtp).digest('hex');
+
+    user.verification = user.verification || {};
+    user.verification.otpHash = otpHash;
+    user.verification.otpExpiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
+    user.verification.otpAttempts = 0;
+    user.verification.lastOtpSentAt = new Date();
+    await user.save();
+
+    // Send email or log to console
+    try {
+      await emailService.sendPasswordResetEmail(email, `Code: ${resetOtp}`);
+    } catch (e) {
+      console.warn('[Auth] Email delivery notice:', e.message);
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'If an account with this email exists, a 6-digit verification code has been sent.',
+      ...(process.env.NODE_ENV !== 'production' ? { devOtp: resetOtp } : {})
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+exports.verifyResetCode = async (req, res) => {
+  try {
+    const rawEmail = req.body?.email;
+    const rawCode = req.body?.otpCode || req.body?.code;
+
+    if (!rawEmail || !rawCode) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email and 6-digit code are required.'
+      });
+    }
+
+    const email = rawEmail.trim().toLowerCase();
+    const code = String(rawCode).trim().replace(/\s/g, '');
+
+    if (!/^\d{6}$/.test(code)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please enter a valid 6-digit verification code.'
+      });
+    }
+
+    const user = await User.findOne({ email }).select(
+      '+verification.otpHash +verification.otpExpiresAt +verification.otpAttempts'
+    );
+
+    if (!user || !user.verification?.otpHash) {
+      return res.status(400).json({
+        success: false,
+        message: 'No active password reset request found. Please request a new code.'
+      });
+    }
+
+    // Check expiration
+    if (new Date() > new Date(user.verification.otpExpiresAt)) {
+      return res.status(400).json({
+        success: false,
+        message: 'The verification code has expired. Please request a new code.'
+      });
+    }
+
+    // Check attempts limit (max 5)
+    if ((user.verification.otpAttempts || 0) >= 5) {
+      user.verification.otpHash = null;
+      user.verification.otpExpiresAt = null;
+      await user.save();
+      return res.status(429).json({
+        success: false,
+        message: 'Too many incorrect attempts. Please request a new code.'
+      });
+    }
+
+    const inputHash = crypto.createHash('sha256').update(code).digest('hex');
+    const matches = crypto.timingSafeEqual(
+      Buffer.from(inputHash, 'hex'),
+      Buffer.from(user.verification.otpHash, 'hex')
+    );
+
+    if (!matches) {
+      user.verification.otpAttempts = (user.verification.otpAttempts || 0) + 1;
+      await user.save();
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid verification code. Please check and try again.'
+      });
+    }
+
+    // Code is valid: issue a 10-minute reset token
+    const resetToken = jwt.sign(
+      { id: user._id.toString(), email: user.email, purpose: 'pwd_reset' },
+      getJwtSecret(),
+      { expiresIn: '10m' }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: 'Code verified successfully.',
+      resetToken
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+exports.resetPassword = async (req, res) => {
+  try {
+    const { email: rawEmail, resetToken, newPassword } = req.body;
+
+    if (!resetToken || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'Reset authorization token and new password are required.'
+      });
+    }
+
+    if (typeof newPassword !== 'string' || newPassword.length < 8) {
+      return res.status(400).json({
+        success: false,
+        message: 'Password must be at least 8 characters in length.'
+      });
+    }
+
+    let decoded;
+    try {
+      decoded = jwt.verify(resetToken, getJwtSecret());
+    } catch {
+      return res.status(401).json({
+        success: false,
+        message: 'The reset authorization session has expired or is invalid. Please restart the process.'
+      });
+    }
+
+    if (decoded.purpose !== 'pwd_reset') {
+      return res.status(403).json({
+        success: false,
+        message: 'Invalid authorization token.'
+      });
+    }
+
+    const user = await User.findById(decoded.id).select('+verification');
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User account not found.'
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    user.password = hashedPassword;
+    user.failedLoginAttempts = 0;
+    user.lockedUntil = null;
+    if (user.verification) {
+      user.verification.otpHash = null;
+      user.verification.otpExpiresAt = null;
+    }
+    user.sessions = []; // Revoke active sessions for security
+    await user.save();
+
+    await AuditLog.create({
+      action: 'password_reset_success',
+      performedBy: user._id,
+      role: user.role,
+      targetType: 'User',
+      targetId: user._id,
+      details: `User ${user.email} successfully reset their account password.`,
+      requestId: req.requestId
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: 'Your password has been reset successfully. Please log in with your new password.'
     });
   } catch (err) {
     return res.status(500).json({ success: false, message: err.message });

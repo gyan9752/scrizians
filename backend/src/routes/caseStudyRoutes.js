@@ -4,6 +4,7 @@ const router = express.Router();
 const controller = require('../controllers/caseStudyController');
 const {
   authMiddleware,
+  requireRole,
   requireAdmin
 } = require('../middleware/authMiddleware');
 
@@ -13,28 +14,28 @@ router.get('/:slug', controller.getCaseStudyBySlug);
 router.post(
   '/',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.createCaseStudy
 );
 
 router.get(
   '/admin/list/all',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.getAdminCaseStudies
 );
 
 router.put(
   '/admin/:id',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.updateCaseStudy
 );
 
 router.patch(
   '/admin/:id/review',
   authMiddleware,
-  requireAdmin,
+  requireRole('admin', 'scriza_staff'),
   controller.reviewCaseStudy
 );
 

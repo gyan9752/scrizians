@@ -105,6 +105,7 @@ export default function LoginPage() {
   const [newPassword, setNewPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotError, setForgotError] = useState('');
 
   // 2FA Security Modal State
   const [show2FAModal, setShow2FAModal] = useState(false);
@@ -405,31 +406,80 @@ export default function LoginPage() {
     setOtpSent(false);
     setOtpCode('');
     setNewPassword('');
+    setForgotError('');
     setShowForgotModal(true);
   };
 
-  /*
-   * Password-reset backend flow is not currently implemented
-   * in the Express auth routes, so do not fake OTP success.
-   */
-  const handleSendResetCode = (e: React.FormEvent) => {
+  const handleSendResetCode = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!forgotEmail) return;
 
-    setErrorMessage(
-      'Password reset is not available yet. Please contact the administrator.'
-    );
+    setForgotLoading(true);
+    setForgotError('');
+
+    try {
+      const res = await authApi.forgotPassword(forgotEmail.trim().toLowerCase());
+      if (res.success) {
+        setOtpSent(true);
+        showToast('Verification code sent! Please check your email.');
+      } else {
+        setForgotError(
+          res.message || res.error || 'Failed to send verification code. Please try again.'
+        );
+      }
+    } catch (err: any) {
+      setForgotError(err?.message || 'Failed to send verification code. Please try again.');
+    } finally {
+      setForgotLoading(false);
+    }
   };
 
-  const handleResetPasswordSubmit = (
-    e: React.FormEvent
-  ) => {
+  const handleResetPasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!otpCode || !newPassword) return;
 
-    setForgotLoading(false);
+    if (newPassword.length < 8) {
+      setForgotError('Password must be at least 8 characters in length.');
+      return;
+    }
 
-    showToast(
-      'Password reset is not available yet. Please contact the administrator.'
-    );
+    setForgotLoading(true);
+    setForgotError('');
+
+    try {
+      const normalizedEmail = forgotEmail.trim().toLowerCase();
+      // Step 1: verify OTP code and obtain reset authorization token
+      const verifyRes = await authApi.verifyResetCode(normalizedEmail, otpCode.trim());
+      if (!verifyRes.success || !verifyRes.resetToken) {
+        setForgotError(
+          verifyRes.message || verifyRes.error || 'Invalid or expired verification code.'
+        );
+        setForgotLoading(false);
+        return;
+      }
+
+      // Step 2: reset password with the token
+      const resetRes = await authApi.resetPassword({
+        email: normalizedEmail,
+        resetToken: verifyRes.resetToken,
+        newPassword,
+      });
+
+      if (resetRes.success) {
+        showToast('🎉 Password reset successfully! Please log in.');
+        setShowForgotModal(false);
+        setPassword('');
+        setEmail(normalizedEmail);
+      } else {
+        setForgotError(
+          resetRes.message || resetRes.error || 'Failed to reset password. Please try again.'
+        );
+      }
+    } catch (err: any) {
+      setForgotError(err?.message || 'Failed to reset password. Please try again.');
+    } finally {
+      setForgotLoading(false);
+    }
   };
 
   return (
@@ -664,6 +714,12 @@ export default function LoginPage() {
                   : `Enter the 6-digit code sent to ${forgotEmail} and choose a new password.`}
               </p>
             </div>
+
+            {forgotError && (
+              <div className={styles.errorAlert} style={{ marginBottom: '1rem' }}>
+                {forgotError}
+              </div>
+            )}
 
             {!otpSent ? (
               <form onSubmit={handleSendResetCode}>

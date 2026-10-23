@@ -387,6 +387,8 @@ userSchema.methods.toSafeJSON = function () {
     email: this.email || null,
     phone: this.phone || null,
     role: this.role,
+    avatar: this.avatar || null,
+    title: this.title || null,
     scrizianId: this.scrizianId || null,
     isVerified: this.isVerified,
     emailVerified: this.emailVerified,

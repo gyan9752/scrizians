@@ -64,4 +64,9 @@ router.post('/logout-all', authMiddleware, authController.logoutAll);
 router.get('/me', authMiddleware, authController.getMe);
 router.patch('/profile', authMiddleware, authController.updateProfile);
 
+// Password Reset Flow
+router.post('/forgot-password', authController.forgotPassword);
+router.post('/verify-reset-code', authController.verifyResetCode);
+router.post('/reset-password', authController.resetPassword);
+
 module.exports = router;
